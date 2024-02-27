@@ -1,8 +1,10 @@
 #!/usr/bin/python3
 import cmd
+"""Class console"""
 
 
 class HBNBCommand(cmd.Cmd):
+    """Class"""
     prompt = "(hbnb) "
 
     def do_EOF(self, line):
