@@ -150,12 +150,12 @@ class HBNBCommand(cmd.Cmd):
         try:
             attribute_value = args[3]
         except IndexError:
-            if args[1].startswith('"'):
-                print("** attribute name missing **")
-            else:
-                print("** value missing **")
+            print("** value missing **")
 
-        if len(args) == 4:
+        if len(args) == 3 and args[1].startswith('"'):
+            print("** attribute name missing **")
+
+        elif len(args) == 4:
             try:
                 if key not in storage.all():
                     raise KeyError
