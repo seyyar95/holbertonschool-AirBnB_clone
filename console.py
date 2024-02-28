@@ -124,37 +124,20 @@ class HBNBCommand(cmd.Cmd):
         if not args:
             print("** class name missing **")
             return
-
-        try:
-            class_name = args[0]
-            if class_name not in globals():
-                raise KeyError
-            else:
-                key = class_name
-        except KeyError:
-            print("** class doesn't exist **")
-            return
-
-        try:
-            instance_id = args[1]
-            key += '.' + instance_id
-        except IndexError:
+        elif len(args) == 1:
             print("** instance id missing **")
             return
-        if len(args) == 2:
+        elif len(args) == 2:
             print("** attribute name missing **")
-        try:
-            attribute_name = args[2]
-        except IndexError:
-            print("** attribute name missing **")
-
-        try:
-            attribute_value = args[3]
-        except IndexError:
-            print("** value missing **")
-
-
-        if len(args) == 4:
+            return
+        elif len(args) == 3:
+            if args[1].startswith('"'):
+                print("** attribute name missing **")
+            else:
+                print("** value missing **")
+            return
+        else:
+            key = args[0] + '.' + args[1]
             try:
                 if key not in storage.all():
                     raise KeyError
