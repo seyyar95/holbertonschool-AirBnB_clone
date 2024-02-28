@@ -148,7 +148,7 @@ class HBNBCommand(cmd.Cmd):
             print("** attribute name missing **")
 
         try:
-            attribute_value = args[3]
+            attribute_value = str(args[3])
         except IndexError:
             print("** value missing **")
 
