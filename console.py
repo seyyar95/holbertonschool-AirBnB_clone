@@ -2,7 +2,7 @@
 """Class console"""
 import cmd
 from models.base_model import BaseModel
-
+from models import storage
 
 class HBNBCommand(cmd.Cmd):
     """Class"""
@@ -33,7 +33,6 @@ class HBNBCommand(cmd.Cmd):
         if not args:
             print("*** class name missing ***")
             return
-
         try:
             class_name = globals()[args[0]]
         except KeyError:
@@ -43,6 +42,47 @@ class HBNBCommand(cmd.Cmd):
         b = class_name()
         b.save()
         print(b.id)
+
+    def do_show(self, line):
+        args = line.split()
+        if not args:
+            print("** class name missing **")
+            return
+
+        try:
+            class_name = args[0]
+            if class_name not in globals():
+                raise KeyError
+            else:
+                key = class_name
+        except KeyError:
+            print("** class doesn't exist **")
+            return
+        try:
+            instance_id = args[1]
+            key += '.' + instance_id
+        except IndexError:
+            print("** instance id missing **")
+            return
+        try:
+            print(storage.all()[key])
+        except KeyError:
+            print("** no instance found **")
+
+    def destroy(self, line):
+        args = line.split()
+        if not args:
+            print("** class name missing **")
+            return
+
+        try:
+            class_name = args[0]
+            if class_name not in globals():
+                raise KeyError
+            else:
+                key = class_name
+        except KeyError:
+            print("** class doesn't exist **")
 
 
 if __name__ == '__main__':
