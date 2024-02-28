@@ -124,6 +124,9 @@ class HBNBCommand(cmd.Cmd):
         if not args:
             print("** class name missing **")
             return
+        elif len(args) == 3 and args[1].startswith('"'):
+            print("** attribute name missing **")
+            return
 
         try:
             class_name = args[0]
@@ -146,16 +149,15 @@ class HBNBCommand(cmd.Cmd):
             attribute_name = args[2]
         except IndexError:
             print("** attribute name missing **")
+            return
 
         try:
             attribute_value = args[3]
         except IndexError:
             print("** value missing **")
+            return
 
-        if len(args) == 3 and args[1].startswith('"'):
-            print("** attribute name missing **")
-
-        elif len(args) == 4:
+        if len(args) == 4:
             try:
                 if key not in storage.all():
                     raise KeyError
