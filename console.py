@@ -155,15 +155,18 @@ class HBNBCommand(cmd.Cmd):
             else:
                 print("** value missing **")
 
-        try:
-            if key not in storage.all():
-                raise KeyError
-            else:
-                instance = storage.all()[key]
-                setattr(instance, attribute_name, attribute_value)
-                storage.save()
-        except KeyError:
-            print("** no instance found **")
+        if len(args) == 4:
+            try:
+                if key not in storage.all():
+                    raise KeyError
+                else:
+                    attribute_name = args[2]
+                    attribute_value = args[3]
+                    instance = storage.all()[key]
+                    setattr(instance, attribute_name, attribute_value)
+                    storage.save()
+            except KeyError:
+                print("** no instance found **")
 
 
 if __name__ == '__main__':
