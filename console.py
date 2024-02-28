@@ -141,7 +141,8 @@ class HBNBCommand(cmd.Cmd):
         except IndexError:
             print("** instance id missing **")
             return
-
+        if len(args) == 2:
+            print("** attribute name missing **")
         try:
             attribute_name = args[2]
         except IndexError:
@@ -151,6 +152,7 @@ class HBNBCommand(cmd.Cmd):
             attribute_value = str(args[3])
         except IndexError:
             print("** value missing **")
+
 
         if len(args) == 4:
             try:
