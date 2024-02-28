@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """Class console"""
 import cmd
+from models.base_model import BaseModel
 
 
 class HBNBCommand(cmd.Cmd):
@@ -26,6 +27,22 @@ class HBNBCommand(cmd.Cmd):
     def emptyline(self):
         """empty"""
         return ""
+
+    def do_create(self, line):
+        args = line.split()
+        if not args:
+            print("*** class name missing ***")
+            return
+
+        try:
+            class_name = globals()[args[0]]
+        except KeyError:
+            print("*** class doesn't exist ***")
+            return
+
+        b = class_name()
+        b.save()
+        print(b.id)
 
 
 if __name__ == '__main__':
