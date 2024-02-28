@@ -156,6 +156,8 @@ class HBNBCommand(cmd.Cmd):
             if key not in storage.all():
                 raise KeyError
             else:
+                attribute_name = args[2]
+                attribute_value = args[3]
                 instance = storage.all()[key]
                 setattr(instance, attribute_name, attribute_value)
                 storage.save()
