@@ -2,17 +2,18 @@
 import json
 from models.base_model import BaseModel
 
+
 class FileStorage:
     __file_path = "file.json"
     __objects = {}
-    
+
     def all(self):
         return self.__objects
 
     def new(self, obj):
-        name = obj.__class__.__name__ 
+        name = obj.__class__.__name__
         self.__objects[f"{name}.{obj.id}"] = obj
-    
+
     def save(self):
         file = self.__file_path
         objd = self.__objects
