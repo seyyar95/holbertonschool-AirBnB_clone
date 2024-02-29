@@ -18,7 +18,17 @@ class HBNBCommand(cmd.Cmd):
 
     @staticmethod
     def split_args(line):
-        # Regex pattern to match quoted strings or non-whitespace characters
+        """
+        Splits a user input line into arguments, handling both quoted strings
+        and non-whitespace characters.
+
+        Args:
+            line (str); The user input line to split.
+
+        Returns:
+            list: A list of arguments extracted from the line.
+        """
+
         pattern = r'"[^"]*"|\S+'
         return re.findall(pattern, line)
 
@@ -43,6 +53,16 @@ class HBNBCommand(cmd.Cmd):
         return ""
 
     def do_create(self, line):
+        """
+        Creates a new instance of a class and stores it in the storage.
+
+        Args:
+            line (str): The user input line containing the class name.
+
+        Returns:
+            None
+        """
+
         args = HBNBCommand.split_args(line)
         try:
             class_name = args[0]
@@ -60,6 +80,18 @@ class HBNBCommand(cmd.Cmd):
                 print("** class name missing **")
 
     def do_show(self, line):
+        """
+        Prints a specific instance of a class based on
+        class name and instance ID
+
+        Args:
+            line (str): The user input line containing class name
+            and instance ID.
+
+        Returns:
+            None
+        """
+
         args = HBNBCommand.split_args(line)
         try:
             class_name = args[0]
@@ -78,8 +110,20 @@ class HBNBCommand(cmd.Cmd):
                 print("** class name missing **")
             elif len(args) < 2:
                 print("** instance id missing **")
-        
+
     def do_destroy(self, line):
+        """
+        Deletes an instance of a class based on class name
+        and instance ID.
+
+        Args:
+            line (str): The user input line containing class name
+            and instance ID.
+
+        Returns:
+            None
+        """
+
         args = HBNBCommand.split_args(line)
         try:
             class_name = args[0]
@@ -101,21 +145,34 @@ class HBNBCommand(cmd.Cmd):
                 print("** instance id missing **")
 
     def do_all(self, line):
+        """
+        prints all objects of a given class
+        or all objects in storage.
+
+        Args:
+            line (str): The user input line
+            containing the class name (optional)
+
+        Returns:
+            None
+        """
+
         args = HBNBCommand.split_args(line)
-        if args:
-            try:
+        try:
+            if args:
                 class_name = args[0]
                 if class_name not in globals():
                     raise KeyError("** class doesn't exist **")
                 else:
-                    for v in storage.all().values():
-                        if v.__class__.__name__ == class_name:
-                            print(v)
-            except KeyError as e:
-                print(e.args[0])
-        else:
-            for v in storage.all().values():
-                print(v)
+                    for value in storage.all().values():
+                        if value.__class__.__name__ == class_name:
+                            print(value)
+            else:
+                for value in storage.all().values():
+                    print(value)
+
+        except KeyError as e:
+            print(e.args[0])
 
     def do_update(self, line):
         """
@@ -123,17 +180,15 @@ class HBNBCommand(cmd.Cmd):
         stored in the global storage.
 
         Args:
-            line (str): The user input line containing update arguments.
+            line (str): The user input line containing update arguments
+            in format:
+            `<class_name> <instance_id> <attribute_name> "<attributae_value>"`
 
         Returns:
                 None
         """
 
         args = HBNBCommand.split_args(line)
-
-        """
-        Error Handling
-        """
 
         try:
             class_name = args[0]
