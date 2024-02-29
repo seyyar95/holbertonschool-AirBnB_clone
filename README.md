@@ -27,16 +27,11 @@ To launch the console application, navigate to the application directory and typ
 
 The console supports various commands for data management:
 
-**create**: Creates a new instance of BaseModel, saves it (to the JSON file) and prints the id.
-Usage: create <class name>
-**show**: Prints the string representation of an instance based on the class name and id.
-Usage: show <class name> <id>
-**destroy**: Deletes an instance based on the class name and id (save the change into the JSON file).
-Usage: destroy <class name> <id>
-**all**: Prints all string representation of all instances based or not on the class name.
-Usage: all or all <class name>
-**update**: Updates an instance based on the class name and id by adding or updating attribute (save the change into the JSON file).
-Usage: update <class name> <id> <attribute name> "<attribute value>"
+**create**: Creates a new instance of BaseModel, saves it (to the JSON file) and prints the id. `Usage: create <class name>`
+**show**: Prints the string representation of an instance based on the class name and id. `Usage: show <class name> <id>`
+**destroy**: Deletes an instance based on the class name and id (save the change into the JSON file). `Usage: destroy <class name> <id>`
+**all**: Prints all string representation of all instances based or not on the class name. `Usage: all or all <class name>`
+**update**: Updates an instance based on the class name and id by adding or updating attribute (save the change into the JSON file). `Usage: update <class name> <id> <attribute name> "<attribute value>"`
 **quit or EOF**: Exit the console
 ***Examples***
 ```
