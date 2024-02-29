@@ -49,3 +49,12 @@ The console supports various commands for data management:
 ```
 We welcome contributions to the HBNB Console. To contribute, please fork the repository, create a new branch for your feature or bugfix, and submit a pull request.
 
+## Classes
+
+- `**BaseModel**`: Defines all common attributes/methods for other classes.
+- `**User**`: User information.
+- `**State**`: State information.
+- `**City**`: City information relative to a state.
+- `**Amenity**`: Amenity information.
+- `**Place**`: Place information.
+- `**Review**`: Review information.
