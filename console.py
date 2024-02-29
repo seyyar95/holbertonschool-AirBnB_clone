@@ -9,11 +9,18 @@ from models.city import City
 from models.amenity import Amenity
 from models.review import Review
 from models import storage
+import re
 
 
 class HBNBCommand(cmd.Cmd):
     """Class"""
     prompt = "(hbnb) "
+
+    @staticmethod
+    def split_args(line):
+        # Regex pattern to match quoted strings or non-whitespace characters
+        pattern = r'"[^"]*"|\S+'
+        return re.findall(pattern, line)
 
     def do_EOF(self, line):
         """do_EOF"""
@@ -126,60 +133,49 @@ class HBNBCommand(cmd.Cmd):
                 print(v)
 
     def do_update(self, line):
-        args = line.split()
-        if not args:
-            print("** class name missing **")
-            return
-        #elif len(args) == 3 and args[1].startswith('"'):
-            #print("** attribute name missing **")
-            #return
+        """
+        Updates an attributae of a class instance
+        stored in the global storage.
+
+        Args:
+            line (str): The user input line containing update arguments.
+
+        Returns:
+                None
+        """
+
+        args = HBNBCommand.split_args(line)
+
+        """
+        Error Handling
+        """
 
         try:
             class_name = args[0]
             if class_name not in globals():
-                raise KeyError
+                raise KeyError("** class doesn't exist **")
             else:
-                key = class_name
-        except KeyError:
-            print("** class doesn't exist **")
-            return
-
-        try:
-            instance_id = args[1]
-            key += '.' + instance_id
-            if key not in storage.all():
-                raise KeyError
-        except (IndexError, KeyError):
-            if len(args) == 1:
-                print("** instance id missing **")
-            else:
-                print("** no instance found **")
-            return
-
-        try:
-            attribute_name = args[2]
-        except IndexError:
-            print("** attribute name missing **")
-            return
-
-        try:
-            attribute_value = args[3]
-        except IndexError:
-            print("** value missing **")
-            return
-
-        if len(args) == 4:
-            try:
+                instance_id = args[1]
+                key = f"{class_name}.{instance_id}"
                 if key not in storage.all():
-                    raise KeyError
-                else:
-                    attribute_name = args[2]
-                    attribute_value = args[3]
-                    instance = storage.all()[key]
-                    setattr(instance, attribute_name, attribute_value)
-                    storage.save()
-            except KeyError:
-                print("** no instance found **")
+                    raise KeyError("** no instance found **")
+
+            instance = storage.all()[key]
+            attribute_name = args[2]
+            attribute_value = args[3]
+            setattr(instance, attribute_name, attribute_value)
+            storage.save
+        except KeyError as e:
+            print(e)
+        except IndexError:
+            if len(args) < 1:
+                print("** class name missing **")
+            elif len(args) < 2:
+                print("** instance id missing **")
+            elif len(args) < 3:
+                print("** attributae name missing **")
+            elif len(args) < 4:
+                print("** value missing **")
 
 
 if __name__ == '__main__':
