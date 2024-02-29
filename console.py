@@ -43,94 +43,78 @@ class HBNBCommand(cmd.Cmd):
         return ""
 
     def do_create(self, line):
-        args = line.split()
-        if not args:
-            print("** class name missing **")
-            return
+        args = HBNBCommand.split_args(line)
         try:
-            class_name = globals()[args[0]]
-        except KeyError:
-            print("** class doesn't exist **")
-            return
-
-        b = class_name()
-        b.save()
-        print(b.id)
+            class_name = args[0]
+            if class_name not in globals():
+                raise KeyError("** class doesn't exist **")
+            else:
+                class_name = globals()[args[0]]
+                b = class_name()
+                b.save()
+                print(b.id)
+        except KeyError as e:
+            print(e.args[0])
+        except IndexError:
+            if len(args) < 1:
+                print("** class name missing **")
 
     def do_show(self, line):
-        args = line.split()
-        if not args:
-            print("** class name missing **")
-            return
-
+        args = HBNBCommand.split_args(line)
         try:
             class_name = args[0]
             if class_name not in globals():
-                raise KeyError
+                raise KeyError("** class doesn't exist **")
             else:
-                key = class_name
-        except KeyError:
-            print("** class doesn't exist **")
-            return
-        try:
-            instance_id = args[1]
-            key += '.' + instance_id
+                instance_id = args[1]
+                key = f"{class_name}.{instance_id}"
+                if key not in storage.all():
+                    raise KeyError("** no instance found **")
+                print(storage.all()[key])
+        except KeyError as e:
+            print(e.args[0])
         except IndexError:
-            print("** instance id missing **")
-            return
-        try:
-            print(storage.all()[key])
-        except KeyError:
-            print("** no instance found **")
-
+            if len(args) < 1:
+                print("** class name missing **")
+            elif len(args) < 2:
+                print("** instance id missing **")
+        
     def do_destroy(self, line):
-        args = line.split()
-        if not args:
-            print("** class name missing **")
-            return
-
+        args = HBNBCommand.split_args(line)
         try:
             class_name = args[0]
             if class_name not in globals():
-                raise KeyError
+                raise KeyError("** class doesn't exist **")
             else:
-                key = class_name
-        except KeyError:
-            print("** class doesn't exist **")
-            return
-
-        try:
-            instance_id = args[1]
-            key += '.' + instance_id
-        except IndexError:
-            print("** instance id missing **")
-            return
-
-        try:
-            if key not in storage.all():
-                raise KeyError
-            else:
+                instance_id = args[1]
+                key = f"{class_name}.{instance_id}"
+                if key not in storage.all():
+                    raise KeyError("** no instance found **")
                 del storage.all()[key]
                 storage.save()
-        except KeyError:
-            print("** no instance found **")
+        except KeyError as e:
+            print(e.args[0])
+        except IndexError:
+            if len(args) < 1:
+                print("** class name missing **")
+            elif len(args) < 2:
+                print("** instance id missing **")
 
     def do_all(self, line):
-        args = line.split()
+        args = HBNBCommand.split_args(line)
         if args:
             try:
                 class_name = args[0]
                 if class_name not in globals():
-                    raise KeyError
+                    raise KeyError("** class doesn't exist **")
                 else:
-                    for k, v in storage.all().items():
-                        print(v)
-            except KeyError:
-                print("** class doesn't exist **")
-                return
+                    for v in storage.all().values():
+                        print(str(v))
+            except KeyError as e:
+                print(e.args[0])
         else:
-            for k, v in storage.all().items():
-                print(v)
+            for v in storage.all().values():
+                print(str(v))
 
     def do_update(self, line):
         """
