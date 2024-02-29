@@ -1,4 +1,6 @@
-![](https://www.google.com/imgres?imgurl=https%3A%2F%2Fwww.tabbykatz.com%2Fhbnb.png&tbnid=Z8ilQ1b2wbhUxM&vet=12ahUKEwj17sT36NCEAxWRk_0HHUzvBKUQMygAegQIARBT..i&imgrefurl=https%3A%2F%2Fwww.tabbykatz.com%2Fportfolio%2Fhbnb&docid=sYNrJti-7C_vNM&w=2454&h=1036&q=hbnb&ved=2ahUKEwj17sT36NCEAxWRk_0HHUzvBKUQMygAegQIARBT "hbnb")
+<p align="center">
+  <img src="https://github.com/Adeniyii/AirBnB_clone/blob/main/assets/hbnb_logo.png" alt="HolbertonBnB logo">
+</p>
 
 # HBNB Console
 
