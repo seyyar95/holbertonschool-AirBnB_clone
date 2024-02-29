@@ -134,7 +134,7 @@ class HBNBCommand(cmd.Cmd):
 
     def do_update(self, line):
         """
-        Updates an attributae of a class instance
+        Updates an attribute of a class instance
         stored in the global storage.
 
         Args:
@@ -166,7 +166,7 @@ class HBNBCommand(cmd.Cmd):
             setattr(instance, attribute_name, attribute_value)
             storage.save
         except KeyError as e:
-            print(e)
+            print(e.args[0])
         except IndexError:
             if len(args) < 1:
                 print("** class name missing **")
