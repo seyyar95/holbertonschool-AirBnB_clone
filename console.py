@@ -109,12 +109,13 @@ class HBNBCommand(cmd.Cmd):
                     raise KeyError("** class doesn't exist **")
                 else:
                     for v in storage.all().values():
-                        print(str(v))
+                        if v.__class__.__name__ == class_name:
+                            print(v)
             except KeyError as e:
                 print(e.args[0])
         else:
             for v in storage.all().values():
-                print(str(v))
+                print(v)
 
     def do_update(self, line):
         """
