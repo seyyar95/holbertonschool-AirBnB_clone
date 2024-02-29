@@ -51,10 +51,10 @@ We welcome contributions to the HBNB Console. To contribute, please fork the rep
 
 ## Classes
 
-- `**BaseModel**`: Defines all common attributes/methods for other classes.
-- `**User**`: User information.
-- `**State**`: State information.
-- `**City**`: City information relative to a state.
-- `**Amenity**`: Amenity information.
-- `**Place**`: Place information.
-- `**Review**`: Review information.
+- `BaseModel`: Defines all common attributes/methods for other classes.
+- `User`: User information.
+- `State`: State information.
+- `City`: City information relative to a state.
+- `Amenity`: Amenity information.
+- `Place`: Place information.
+- `Review`: Review information.
