@@ -11,6 +11,6 @@ class TestCity(unittest.TestCase):
         instance = City()
         instance.state_id = "16" 
         instance.name = "Albuquerque"
-        self.assertIn(instance.name, instance.__dict__)
-        self.assertIn(instance.state_id, instance.__dict__)
+        self.assertEqual(instance.name, "Albuquerque")
+        self.assertEqual(instance.state_id, "16"
 
