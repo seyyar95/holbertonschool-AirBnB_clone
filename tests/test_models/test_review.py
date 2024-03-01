@@ -12,4 +12,6 @@ class TestReview(unittest.TestCase):
         instance.place_id = "123"
         instance.user_id = "23455"
         instance.text = "Text"
-        self.assertIn(instance.place_id, instance.__dict__)
+        self.assertEqual(instance.place_id, "123")
+        self.assertEqual(instance.text, "Text")
+        self.assertEqual(instance.user_id, "23455")
