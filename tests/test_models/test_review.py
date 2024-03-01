@@ -12,3 +12,4 @@ class TestReview(unittest.TestCase):
         instance.place_id = "123"
         instance.user_id = "23455"
         instance.text = "Text"
+        self.assertIn(instance.place_id, instance.__dict__)
