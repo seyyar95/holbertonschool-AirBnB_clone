@@ -19,7 +19,7 @@ class TestBaseModel(unittest.TestCase):
         self.assertIn("BaseModel." + b.id, storage.all())
         self.assertNotEqual(first_update, second_update)
         with open("file.json", "r") as file:
-            self.assertIn("BaseModel.{}".format(self.b.id), file.read())
+            self.assertIn(f"BaseModel.{b.id}", file.read())
 
 
     def test_to_dict(self):
