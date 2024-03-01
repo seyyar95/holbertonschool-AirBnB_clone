@@ -11,9 +11,11 @@ class TestBaseModel(unittest.TestCase):
     
     def test_save(self):
         b = BaseModel()
+        first_update = b.updated_at
         b.name = "Frank Castle"
         b.my_number = 89
         b.save()
-        self.assertIn("BaseModel." + b.id, storage.all()) 
-
+        second_update = b.updated_at
+        self.assertIn("BaseModel." + b.id, storage.all())
+        self.assertNotEqual(first_update, second_update)
 
