@@ -13,4 +13,3 @@ class TestCity(unittest.TestCase):
         instance.name = "Albuquerque"
         self.assertEqual(instance.name, "Albuquerque")
         self.assertEqual(instance.state_id, "16")
-

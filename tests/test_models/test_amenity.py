@@ -10,4 +10,4 @@ class TestAmenity(unittest.TestCase):
     def  test_amenity(self):
         instance = Amenity()
         instance.name = "What"
-        self.assertIn(instance.name, "What")
+        self.assertEqual(instance.name, "What")
