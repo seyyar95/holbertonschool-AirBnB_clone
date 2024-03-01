@@ -14,6 +14,6 @@ class TestFileStorage(unittest.TestCase):
 
     def test_save(self):
         instance = BaseModel()
-        storage.new(instance)
+        self.storage.new(instance)
         self.assertIn(instance, storage.all())
 
