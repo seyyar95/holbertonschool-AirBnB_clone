@@ -19,3 +19,12 @@ class TestBaseModel(unittest.TestCase):
         self.assertIn("BaseModel." + b.id, storage.all())
         self.assertNotEqual(first_update, second_update)
 
+    def test_to_dict(self):
+        b = BaseModel()
+        self.assertIn('id', b.to_dict())
+
+    def test_str(self):
+        b = BaseModel()
+        str1 = f"[BaseModel] ({b.id}) {b.__dict__}"
+        self.assertEqual(str1, str(b))
+
