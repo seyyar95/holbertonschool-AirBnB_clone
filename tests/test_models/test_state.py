@@ -2,6 +2,7 @@
 import unittest
 from models import storage
 from models.state import State
+from datetime import datetime
 
 
 class TestState(unittest.TestCase):
