@@ -8,7 +8,7 @@ from models.place import Place
 class TestPlace(unittest.TestCase):
 
     def test_place(self):
-        instance = State()
+        instance = Place()
         instance.name = "Chinar Plaza"
         instance.city_id = 16
         instance.user_id = 23232
