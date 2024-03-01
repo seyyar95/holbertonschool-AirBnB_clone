@@ -9,7 +9,6 @@ from models.amenity import Amenity
 from models.review import Review
 
 
-
 class FileStorage:
     __file_path = "file.json"
     __objects = {}
