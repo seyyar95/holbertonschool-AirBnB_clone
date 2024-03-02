@@ -1,5 +1,12 @@
 #!/usr/bin/python3
-"""Class console"""
+"""
+Class console
+This class defines an interactive command-line interface (CLI)
+for the HBNB application.
+It inherits from the `cmd.CMD` class provided by the `cmd` module,
+which offers basic functionalities for building command-line interfaces
+
+"""
 import cmd
 from models.base_model import BaseModel
 from models.user import User
@@ -13,7 +20,9 @@ import re
 
 
 class HBNBCommand(cmd.Cmd):
-    """Class"""
+    """
+    Prompt displayed before each user input.
+    """
     prompt = "(hbnb) "
 
     @staticmethod
@@ -33,24 +42,20 @@ class HBNBCommand(cmd.Cmd):
         return re.findall(pattern, line)
 
     def do_EOF(self, line):
-        """do_EOF"""
+        """Exits the program when user enter `EOF`."""
         return True
 
     def help_quit(self):
-        """help"""
+        """Prints help message for `quit` command."""
         print("Quit command to exit the program")
 
     def do_quit(self, line):
-        """do_quit"""
+        """Exits the program when user enters `quit`."""
         return True
 
-    def help_EOF(self):
-        """help EOF"""
-        print("EOF command to exit the program")
-
     def emptyline(self):
-        """empty"""
-        return ""
+        """Does nothing when an empty line is entered."""
+        pass
 
     def do_create(self, line):
         """

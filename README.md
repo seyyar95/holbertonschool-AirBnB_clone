@@ -2,7 +2,7 @@
   <img src="https://github.com/Adeniyii/AirBnB_clone/blob/main/assets/hbnb_logo.png" alt="HolbertonBnB logo">
 </p>
 
-# HBNB Console
+# HBNB clone - The Console
 
 The HBNB Console is a command line interpreter that manages your AirBnB clone objects. This application allows you to create new objects (ex: User, Place), retrieve an object from a file, a database etc., do operations on objects (count, compute stats, etc.), update attributes of an object, and destroy an object.
 
