@@ -10,17 +10,41 @@ from models.review import Review
 
 
 class FileStorage:
+    """
+    Handles storage and retrieval of objects to/from a JSON file.
+
+    Attributes:
+        __file_path (str): The path to the JSOn file where objects are stored.
+        __objects (dict): A dictionary containing all loaded objects.
+    """
+
     __file_path = "file.json"
     __objects = {}
 
     def all(self):
+        """
+        Returns all loaded objects.
+
+        Returns:
+            dict: A dictionary containing all objects,
+            keyed by their class name and ID.
+        """
         return self.__objects
 
     def new(self, obj):
+        """
+        Saves all objects to the storage.
+
+        Args:
+            obj: The object to be saved.
+        """
         name = obj.__class__.__name__
         self.__objects[f"{name}.{obj.id}"] = obj
 
     def save(self):
+        """
+        Saves all objects to the JSON file.
+        """
         file = self.__file_path
         objd = self.__objects
         newD = {}
@@ -31,6 +55,9 @@ class FileStorage:
             json.dump(newD, f)
 
     def reload(self):
+        """
+        Loads objects from the JSON file.
+        """
         file = self.__file_path
 
         try:

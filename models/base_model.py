@@ -11,7 +11,7 @@ class BaseModel:
 
     Provides common functionalities like automatic ID generation,
     timestamps for creation and update, and methods for serializaion
-    and deserializations.
+    and deserialization.
 
     Attributes:
         id (str): Unique identifier for the object generated automatically
